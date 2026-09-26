@@ -57,7 +57,7 @@ from typing import Iterable, List, NamedTuple, Set
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DRIVER_DIR = REPO_ROOT / "driver"
 
-NODEJS_DIST = "https://nodejs.org/dist"
+NODEJS_DIST = "http://nodejs.org/dist"
 
 
 class Platform(NamedTuple):
