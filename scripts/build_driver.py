@@ -169,23 +169,6 @@ def fetch_playwright_core(version: str, work_dir: Path) -> Path:
 
 
 def fetch_node(
-    platform: Platform, node_version: str, bundle_dir: Path, work_dir: Path
-) -> None:
-    """Download the Node.js build for a platform and place node + LICENSE in the bundle."""
-    node_dir = f"node-v{node_version}-{platform.node_dir}"
-    ext = "zip" if platform.windows else "tar.gz"
-    url = f"{NODEJS_DIST}/v{node_version}/{node_dir}.{ext}"
-    archive = work_dir / f"{node_dir}.{ext}"
-    download(url, archive)
-    if platform.windows:
-        with zipfile.ZipFile(archive) as zf:
-            _extract_zip_file(zf, f"{node_dir}/node.exe", bundle_dir / "node.exe")
-            _extract_zip_file(zf, f"{node_dir}/LICENSE", bundle_dir / "LICENSE")
-    else:
-        with tarfile.open(archive, "r:gz") as tar:
-            _extract_tar_file(tar, f"{node_dir}/bin/node", bundle_dir / "node")
-            _extract_tar_file(tar, f"{node_dir}/LICENSE", bundle_dir / "LICENSE")
-    archive.unlink()
 
 
 def zip_bundle(bundle_dir: Path, destination: Path) -> None:
